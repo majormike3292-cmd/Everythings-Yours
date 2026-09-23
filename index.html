@@ -23,9 +23,6 @@ html,body{
 }
 
 body{
- <audio id="loveSong" loop preload="auto">
-  <source src="Worst%20Way.mp3" type="audio/mpeg">
-</audio>
   font-family:Georgia,serif;
   color:white;
   text-align:center;
@@ -99,20 +96,16 @@ p{
   max-width:680px;
   padding:34px 24px;
   border-radius:32px;
-
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.28),
       rgba(255,255,255,.10)
     );
-
   border:2px solid rgba(255,255,255,.5);
-
   box-shadow:
     0 15px 60px rgba(65,0,80,.35),
     inset 0 0 30px rgba(255,255,255,.12);
-
   backdrop-filter:blur(18px);
 }
 
@@ -121,20 +114,15 @@ button{
   border-radius:50px;
   padding:17px 30px;
   margin:12px 5px;
-
   font-size:17px;
   font-family:Georgia,serif;
   font-weight:bold;
-
   color:#b10062;
-
   background:
     linear-gradient(135deg,#fff,#ffe0f1,#f8d7ff);
-
   box-shadow:
     0 8px 25px rgba(80,0,70,.25),
     0 0 20px rgba(255,255,255,.3);
-
   cursor:pointer;
   transition:.25s;
 }
@@ -161,14 +149,11 @@ input{
   border-radius:40px;
   border:2px solid rgba(255,255,255,.7);
   outline:none;
-
   background:rgba(255,255,255,.9);
   color:#8d1555;
-
   text-align:center;
   font-size:18px;
   font-family:Georgia,serif;
-
   box-shadow:0 5px 25px rgba(70,0,70,.2);
 }
 
@@ -186,22 +171,16 @@ input::placeholder{
 .reasons li{
   padding:17px 18px;
   margin:13px 0;
-
   border-radius:20px;
-
   background:
     linear-gradient(
       135deg,
       rgba(255,255,255,.24),
       rgba(255,255,255,.08)
     );
-
   border:1px solid rgba(255,255,255,.3);
-
   box-shadow:0 5px 18px rgba(70,0,70,.15);
-
   font-size:17px;
-
   opacity:0;
   animation:slideIn .7s ease forwards;
 }
@@ -218,25 +197,18 @@ input::placeholder{
   width:145px;
   height:145px;
   margin:10px auto 25px;
-
   border-radius:50%;
-
   display:flex;
   justify-content:center;
   align-items:center;
-
   font-size:55px;
-
   background:
     radial-gradient(circle,#ffb6dd 0 35%,#ff4fa3 36% 65%,#b56cff 66%);
-
   border:5px solid rgba(255,255,255,.75);
-
   box-shadow:
     0 0 25px #fff,
     0 0 55px #ff4fa3,
     0 0 80px #b56cff;
-
   animation:spinGlow 5s linear infinite;
 }
 
@@ -254,9 +226,7 @@ input::placeholder{
   bottom:-60px;
   pointer-events:none;
   z-index:1;
-
   animation:floatUp linear forwards;
-
   filter:drop-shadow(0 0 8px rgba(255,255,255,.7));
 }
 
@@ -358,6 +328,10 @@ input::placeholder{
 
 <div id="floaters"></div>
 
+<audio id="loveSong" loop preload="auto">
+  <source src="./Worst%20Way.mp3" type="audio/mpeg">
+</audio>
+
 <!-- HOME -->
 <div class="screen" id="home">
 
@@ -383,7 +357,6 @@ input::placeholder{
   <p class="small-note">Made with a whole lot of ❤️</p>
 
 </div>
-
 
 <!-- WELCOME -->
 <div class="screen hidden" id="welcome">
@@ -411,7 +384,6 @@ input::placeholder{
   </div>
 
 </div>
-
 
 <!-- REASONS -->
 <div class="screen hidden" id="reasons">
@@ -447,7 +419,6 @@ input::placeholder{
   </div>
 
 </div>
-
 
 <!-- NOTE -->
 <div class="screen hidden" id="note">
@@ -507,7 +478,6 @@ input::placeholder{
 
 </div>
 
-
 <!-- FINAL -->
 <div class="screen hidden" id="finalScreen">
 
@@ -556,43 +526,28 @@ input::placeholder{
 
   </div>
 
-</div>function next(id){
+</div>
+
+<script>
+
+function next(id){
 
   const song = document.getElementById('loveSong');
 
-  if (song.paused) {
+  if(song && song.paused){
     song.volume = 0.85;
-    song.play().catch(() => {});
+    song.play().catch(()=>{});
   }
 
   document
     .querySelectorAll('.screen')
     .forEach(screen => screen.classList.add('hidden'));
 
-  document
-    .getElementById(id)
-    .classList.remove('hidden');
+  const target = document.getElementById(id);
 
-  window.scrollTo({
-    top:0,
-    behavior:'smooth'
-  });
-
-  sparkleBurst();
-}
-
-
-<Scr
-
-funct
-
-  document
-    .querySelectorAll('.screen')
-    .forEach(screen => screen.classList.add('hidden'));
-
-  document
-    .getElementById(id)
-    .classList.remove('hidden');
+  if(target){
+    target.classList.remove('hidden');
+  }
 
   window.scrollTo({
     top:0,
@@ -605,11 +560,11 @@ funct
 
 function showFinal(){
 
+  const input =
+    document.getElementById('nameInput');
+
   const name =
-    document
-      .getElementById('nameInput')
-      .value
-      .trim();
+    input ? input.value.trim() : '';
 
   document
     .getElementById('finalGreeting')
@@ -630,32 +585,32 @@ function heartExplosion(){
     '💝','💓','💞','✨','🌸'
   ];
 
-  const container=
+  const container =
     document.getElementById('floaters');
 
   for(let i=0;i<35;i++){
 
     setTimeout(()=>{
 
-      const el=
+      const el =
         document.createElement('div');
 
       el.className='floating';
 
-      el.textContent=
+      el.textContent =
         emojis[
           Math.floor(
             Math.random()*emojis.length
           )
         ];
 
-      el.style.left=
+      el.style.left =
         Math.random()*100+'vw';
 
-      el.style.fontSize=
+      el.style.fontSize =
         (18+Math.random()*30)+'px';
 
-      el.style.animationDuration=
+      el.style.animationDuration =
         (5+Math.random()*5)+'s';
 
       container.appendChild(el);
@@ -676,22 +631,22 @@ function sparkleBurst(){
 
     setTimeout(()=>{
 
-      const s=
+      const s =
         document.createElement('div');
 
       s.className='sparkle';
 
-      s.textContent=
+      s.textContent =
         ['✨','✦','💫','⭐']
         [Math.floor(Math.random()*4)];
 
-      s.style.left=
+      s.style.left =
         Math.random()*100+'vw';
 
-      s.style.top=
+      s.style.top =
         Math.random()*100+'vh';
 
-      s.style.fontSize=
+      s.style.fontSize =
         (15+Math.random()*25)+'px';
 
       document.body.appendChild(s);
@@ -706,26 +661,24 @@ function sparkleBurst(){
 }
 
 
-/* Gentle hearts continuously floating */
-
 setInterval(()=>{
 
-  const el=
+  const el =
     document.createElement('div');
 
   el.className='floating';
 
-  el.textContent=
+  el.textContent =
     ['💕','💗','✨','💖','🌸']
     [Math.floor(Math.random()*5)];
 
-  el.style.left=
+  el.style.left =
     Math.random()*100+'vw';
 
-  el.style.fontSize=
+  el.style.fontSize =
     (14+Math.random()*25)+'px';
 
-  el.style.animationDuration=
+  el.style.animationDuration =
     (7+Math.random()*5)+'s';
 
   document
