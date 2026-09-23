@@ -556,12 +556,35 @@ input::placeholder{
 
   </div>
 
-</div>
+</div>function next(id){
+
+  const song = document.getElementById('loveSong');
+
+  if (song.paused) {
+    song.volume = 0.85;
+    song.play().catch(() => {});
+  }
+
+  document
+    .querySelectorAll('.screen')
+    .forEach(screen => screen.classList.add('hidden'));
+
+  document
+    .getElementById(id)
+    .classList.remove('hidden');
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+  sparkleBurst();
+}
 
 
-<script>
+<Scr
 
-function next(id){
+funct
 
   document
     .querySelectorAll('.screen')
